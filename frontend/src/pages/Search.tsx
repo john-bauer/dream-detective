@@ -80,6 +80,16 @@ export default function Search() {
     return decoded.replace(/<[^>]*>/g, '')
   }
 
+  const extractDomain = (url: string): string => {
+    try {
+      const urlObj = new URL(url)
+      // Remove 'www.' prefix if present
+      return urlObj.hostname.replace(/^www\./, '')
+    } catch {
+      return url
+    }
+  }
+
   return (
       <Container>
         <div className="py-6">
@@ -166,10 +176,12 @@ export default function Search() {
                       {result.sources.map((source: { title: string; url: string; description: string }, index: number) => (
                         <div key={index} className="text-sm">
                           <div className="flex items-start gap-1">
-                            <span className="text-xs text-gray-500 font-medium flex-shrink-0">
-                              {index + 1}
-                            </span>
                             <div className="flex-1">
+                              <div className="mb-2">
+                                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                  {extractDomain(source.url)}
+                                </span>
+                              </div>
                               <a
                                 href={source.url}
                                 target="_blank"
