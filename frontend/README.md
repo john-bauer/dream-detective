@@ -4,6 +4,8 @@ A simple React frontend that connects to a corresponding server-side AI agent, w
 
 ## Getting Started
 
+A recent version of NPM is the only requirement for this part of the project.
+
 All you need to run to get this project running is:
 
 ```bash
