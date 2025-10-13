@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Virtual environment
+venv/
+.env
+
+# IDE
+.vscode/
+.DS_Store
+
+# Logs
+*.log
+
+# API keys and secrets
+.env.local
+.env.production
