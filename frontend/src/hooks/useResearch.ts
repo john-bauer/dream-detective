@@ -25,7 +25,7 @@ export function useResearch() {
   })
 
   const abortControllerRef = useRef<AbortController | null>(null)
-  const initialTimerRef = useRef<number | null>(null)
+  const initialTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // ------------- Methods ----------------
   const fetchResearchData = useCallback(async (query: string) => {

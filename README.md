@@ -1,7 +1,7 @@
 # Dream Detective
 
-# About
-Dream Detective A portfolio project that helps you understand your dreams.
+## About
+Dream Detective is a portfolio project that helps you understand your dreams using AI-powered analysis and web search.
 
 ## Live Demo
 
