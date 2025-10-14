@@ -80,7 +80,7 @@ export default function SearchBar({ initialValue = '', placeholder = 'What did y
           aria-label="Search"
         >
           {isLoading ? (
-            <div className="animate-spin rounded-full h-4 w-4 sm:h-6 sm:w-6 border-2 border-gray-300"></div>
+            <div className="animate-spin rounded-full h-4 w-4 sm:h-6 sm:w-6 border-2 border-gray-200 border-t-blue-600"></div>
           ) : (
             <MagnifyingGlassIcon className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
           )}
