@@ -8,42 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-white border-t border-gray-200 mt-auto">
-      {/* Main Footer */}
-      <div className="py-8 text-center">
-        <p className="text-sm text-gray-800">
-          Built by{' '}
-          <a
-            href="https://johnbauer.me/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 underline"
-          >
-            John Bauer
-          </a>
-          . The source code is licensed{' '}
-          <a
-            href="http://opensource.org/licenses/mit-license.php"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 underline"
-          >
-            MIT
-          </a>
-          . The website content is licensed{' '}
-          <a
-            href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 underline"
-          >
-            CC BY-NC-SA 4.0
-          </a>
-          .
-        </p>
-      </div>
-
-      {/* Subfooter */}
+    <footer className="bg-gray-100 border-t border-gray-200 mt-auto">
       <div className="border-t border-gray-200 py-4">
         <Container>
           <div className="flex items-center justify-between">
