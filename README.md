@@ -1,7 +1,7 @@
 # Dream Detective
 
 ## About
-Dream Detective helps you understand your dreams using AI-powered analysis and web search.
+Dream Detective helps you understand your dreams using web scraping and AI-powered analysis.
 
 ## Live Demo
 
