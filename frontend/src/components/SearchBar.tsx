@@ -16,7 +16,7 @@ interface SearchBarProps {
   autoFocus?: boolean // Whether to focus the input on mount
 }
 
-export default function SearchBar({ initialValue = '', placeholder = 'Describe your dream', isLoading = false, onSubmit, onStop, autoFocus = false }: SearchBarProps) {
+export default function SearchBar({ initialValue = '', placeholder = 'What did you dream about?', isLoading = false, onSubmit, onStop, autoFocus = false }: SearchBarProps) {
   const [value, setValue] = useState(initialValue)
 
   // ------------- Effects -------------
