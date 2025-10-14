@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router'
 import Container from '../components/Container'
 import SearchBar from '../components/SearchBar'
+import ServerStatus from '../components/ServerStatus'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -18,6 +19,10 @@ export default function Home() {
               onSubmit={(q) => navigate(`/search?q=${encodeURIComponent(q)}`)}
               autoFocus
             />
+          </div>
+          {/*-------- Server Status ------ */}
+          <div className="mt-4">
+            <ServerStatus />
           </div>
         </div>
       </div>

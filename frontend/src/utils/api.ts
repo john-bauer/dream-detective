@@ -46,3 +46,25 @@ export async function fetchResearch(question: string, signal?: AbortSignal): Pro
   
   return response.json()
 }
+
+export interface HealthResponse {
+  status: 'healthy' | 'unhealthy'
+  timestamp: number
+  checks: {
+    anthropic_configured: boolean
+    brave_configured: boolean
+  }
+}
+
+export async function fetchHealth(signal?: AbortSignal): Promise<HealthResponse> {
+  const response = await fetch(`${API_BASE_URL}/health`, {
+    method: 'GET',
+    signal,
+  })
+  
+  if (!response.ok) {
+    throw new APIError(response.status, 'Health check failed')
+  }
+  
+  return response.json()
+}
