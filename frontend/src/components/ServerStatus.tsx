@@ -2,6 +2,7 @@
  * @description Server status badge component that displays backend health
  */
 
+import { useState, useEffect } from 'react'
 import { ArrowPathIcon, InformationCircleIcon } from '@heroicons/react/24/outline'
 import { useHealthCheck, HealthStatus } from '../hooks/useHealthCheck'
 
@@ -29,11 +30,23 @@ const statusConfig: Record<HealthStatus, { color: string; bgColor: string; label
 export default function ServerStatus() {
   const { status } = useHealthCheck()
   const config = statusConfig[status]
+  const [isVisible, setIsVisible] = useState(false)
+
+  // Show component after 0.75 second delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true)
+    }, 750)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div 
       key={status}
-      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${config.bgColor} ${config.color} text-sm font-medium transition-all duration-300 animate-[fadeIn_0.3s_ease-out]`}
+      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${config.bgColor} ${config.color} text-sm font-medium transition-all duration-700 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
+      }`}
     >
       {status === 'checking' ? (
         <ArrowPathIcon className={`w-4 h-4 ${config.dotColor.replace('bg-', 'text-')} animate-spin`} />
