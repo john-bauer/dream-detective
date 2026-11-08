@@ -78,6 +78,7 @@ async def limit_request_size(request: Request, call_next):
 
 # Init anthropic client
 client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+CLAUDE_MODEL = "claude-sonnet-5-5"
 
 # Simple rate limiting - track last request time per IP
 last_request_time = {}
@@ -183,18 +184,29 @@ Your task:
 Format your response using markdown. Be thorough but clear - aim for roughly 1-3 short paragraphs."""
 
     try:
-        message = client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=2000,
-            timeout=30,  # 30 second timeout for Claude
+        message = client.beta.messages.create(
+            model=CLAUDE_MODEL,
+            max_tokens=16000,
+            output_config={"effort": "low"},  # Short, chat-style answer; low effort keeps latency and cost down
+            # If the model declines on safety grounds, the API retries on a fallback model in the same call
+            betas=["server-side-fallback-2026-07-01"],
+            fallbacks="default",
+            timeout=60,
             messages=[{
                 "role": "user",
                 "content": prompt
             }]
         )
-        
-        return message.content[0].text
-    
+
+        if message.stop_reason == "refusal":
+            raise RuntimeError("Claude declined to answer")
+
+        # The response can include thinking blocks, so pull out the text blocks explicitly
+        answer = "".join(block.text for block in message.content if block.type == "text")
+        if not answer:
+            raise RuntimeError(f"Claude returned no text (stop_reason={message.stop_reason})")
+        return answer
+
     except Exception as e:
         logger.error(f"Claude API error: {e}")
         raise  # Re-raise to be handled by endpoint

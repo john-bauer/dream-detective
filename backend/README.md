@@ -18,11 +18,11 @@ BRAVE_API_KEY=Your Brave Search Key
 Once your `.env` file is set up, run the following commands:
 
 ```bash
-# Create a virtual environment
-python3 -m venv venv
+# Create a virtual environment (Python 3.10+ required)
+python3.13 -m venv .venv
 
 # Activate it
-source venv/bin/activate
+source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
